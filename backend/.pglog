@@ -1,0 +1,21 @@
+2026-04-21 12:07:25.692 +07 [262309] LOG:  starting PostgreSQL 18.3 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 15.2.1 20260209, 64-bit
+2026-04-21 12:07:25.693 +07 [262309] LOG:  listening on IPv6 address "::1", port 5432
+2026-04-21 12:07:25.693 +07 [262309] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-04-21 12:07:25.694 +07 [262309] FATAL:  could not create lock file "/run/postgresql/.s.PGSQL.5432.lock": No such file or directory
+2026-04-21 12:07:25.695 +07 [262309] LOG:  database system is shut down
+2026-04-21 12:07:39.649 +07 [262539] LOG:  starting PostgreSQL 18.3 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 15.2.1 20260209, 64-bit
+2026-04-21 12:07:39.650 +07 [262539] LOG:  listening on IPv6 address "::1", port 5432
+2026-04-21 12:07:39.650 +07 [262539] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-04-21 12:07:39.652 +07 [262539] LOG:  listening on Unix socket "/home/hour/Documents/CADT/Internship/ksl_project/backend/.pgsocket/.s.PGSQL.5432"
+2026-04-21 12:07:39.660 +07 [262545] LOG:  database system was shut down at 2026-04-21 12:07:25 +07
+2026-04-21 12:07:39.662 +07 [262539] LOG:  database system is ready to accept connections
+2026-04-21 12:07:49.941 +07 [262717] ERROR:  database "ksl" already exists
+2026-04-21 12:07:49.941 +07 [262717] STATEMENT:  CREATE DATABASE ksl;
+2026-04-21 12:12:39.753 +07 [262543] LOG:  checkpoint starting: time
+2026-04-21 12:14:26.494 +07 [262543] LOG:  checkpoint complete: wrote 1066 buffers (6.5%), wrote 3 SLRU buffers; 1 WAL file(s) added, 0 removed, 0 recycled; write=106.710 s, sync=0.013 s, total=106.741 s; sync files=363, longest=0.001 s, average=0.001 s; distance=5023 kB, estimate=5023 kB; lsn=0/1C4C1A8, redo lsn=0/1C4C118
+2026-04-21 12:42:39.876 +07 [262543] LOG:  checkpoint starting: time
+2026-04-21 12:42:41.487 +07 [262543] LOG:  checkpoint complete: wrote 16 buffers (0.1%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=1.605 s, sync=0.002 s, total=1.612 s; sync files=15, longest=0.001 s, average=0.001 s; distance=41 kB, estimate=4525 kB; lsn=0/1C568B0, redo lsn=0/1C56858
+2026-04-21 13:02:39.871 +07 [262543] LOG:  checkpoint starting: time
+2026-04-21 13:02:40.481 +07 [262543] LOG:  checkpoint complete: wrote 6 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.603 s, sync=0.002 s, total=0.610 s; sync files=7, longest=0.001 s, average=0.001 s; distance=3 kB, estimate=4073 kB; lsn=0/1C57648, redo lsn=0/1C575F0
+2026-04-21 13:07:39.582 +07 [262543] LOG:  checkpoint starting: time
+2026-04-21 13:07:39.792 +07 [262543] LOG:  checkpoint complete: wrote 2 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.202 s, sync=0.002 s, total=0.210 s; sync files=2, longest=0.001 s, average=0.001 s; distance=2 kB, estimate=3666 kB; lsn=0/1C58088, redo lsn=0/1C58030

@@ -1,0 +1,4 @@
+export const QUIZ_PASS_SCORE_SIGN = 70;
+export const QUIZ_PASS_SCORE_SPELLING = 75;
+export const AI_CONTRIBUTION_MIN_SCORE = 85;
+export const GEMS_REWARD_MIN_SCORE = 90;

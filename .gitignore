@@ -1,0 +1,10 @@
+node_modules
+.turbo
+dist
+.next
+.env
+.env.local
+*.pyc
+__pycache__/
+.pytest_cache/
+.venv/

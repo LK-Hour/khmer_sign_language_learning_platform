@@ -1,0 +1,19 @@
+{
+  "name": "@ksl/shared",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "echo \"No shared lint config yet\"",
+    "test": "echo \"No shared tests yet\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3"
+  }
+}
