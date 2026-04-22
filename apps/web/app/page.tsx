@@ -20,11 +20,6 @@ export default function HomePage(): JSX.Element {
         </article>
       </section>
 
-      <section style={{ marginTop: "2rem", display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-        <Link href="/login">Login</Link>
-        <Link href="/register">Register</Link>
-        <Link href="/dictionary">Dictionary</Link>
-      </section>
     </main>
   );
 }

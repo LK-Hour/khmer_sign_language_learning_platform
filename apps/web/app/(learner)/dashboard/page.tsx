@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import type { SectionListItem, UnitListItem, UserStatsDto } from "@ksl/shared";
@@ -23,7 +23,6 @@ function isTrack(value: string | null): value is Track {
 }
 
 export default function DashboardPage(): JSX.Element {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [data, setData] = useState<DashboardState>({
     stats: null,
@@ -79,12 +78,6 @@ export default function DashboardPage(): JSX.Element {
     void load();
   }, []);
 
-  function switchTrack(track: Track): void {
-    setActiveTrack(track);
-    window.localStorage.setItem(ACTIVE_TRACK_KEY, track);
-    router.replace(`/dashboard?track=${track}`);
-  }
-
   if (isLoading) {
     return <main style={{ padding: "2rem" }}>Loading dashboard...</main>;
   }
@@ -107,35 +100,6 @@ export default function DashboardPage(): JSX.Element {
         {data.stats?.streak ?? 0} day streak · ⭐ {data.stats?.xp ?? 0} XP
       </p>
 
-      <section style={{ marginTop: "1rem", display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-        <button
-          type="button"
-          onClick={() => switchTrack("sign-language")}
-          style={{
-            borderRadius: 999,
-            padding: "0.4rem 0.9rem",
-            border: activeTrack === "sign-language" ? "2px solid #C0392B" : "1px solid #999",
-            background: activeTrack === "sign-language" ? "#FDF2F2" : "#fff",
-            cursor: "pointer",
-          }}
-        >
-          Sign Language
-        </button>
-        <button
-          type="button"
-          onClick={() => switchTrack("finger-spelling")}
-          style={{
-            borderRadius: 999,
-            padding: "0.4rem 0.9rem",
-            border: activeTrack === "finger-spelling" ? "2px solid #0B7285" : "1px solid #999",
-            background: activeTrack === "finger-spelling" ? "#EDF9FB" : "#fff",
-            cursor: "pointer",
-          }}
-        >
-          Finger Spelling
-        </button>
-      </section>
-
       {activeTrack === "sign-language" ? (
         <section style={{ marginTop: "1.5rem" }}>
           <h2>Sign Language</h2>
@@ -150,15 +114,6 @@ export default function DashboardPage(): JSX.Element {
               ))}
             </ul>
           )}
-          <p style={{ marginTop: "0.75rem" }}>
-            <button
-              type="button"
-              onClick={() => switchTrack("finger-spelling")}
-              style={{ border: "none", background: "none", color: "#0B7285", cursor: "pointer", padding: 0 }}
-            >
-              Switch to Finger Spelling
-            </button>
-          </p>
         </section>
       ) : (
         <section style={{ marginTop: "1.5rem" }}>
@@ -174,15 +129,6 @@ export default function DashboardPage(): JSX.Element {
               ))}
             </ul>
           )}
-          <p style={{ marginTop: "0.75rem" }}>
-            <button
-              type="button"
-              onClick={() => switchTrack("sign-language")}
-              style={{ border: "none", background: "none", color: "#C0392B", cursor: "pointer", padding: 0 }}
-            >
-              Switch to Sign Language
-            </button>
-          </p>
         </section>
       )}
     </main>

@@ -53,3 +53,15 @@
 13. **Area:** Track selection persistence  
    **Decision:** Store active learner track in browser local storage (`ksl_active_track`) and mirror it in dashboard query params (`?track=sign-language|finger-spelling`).  
    **Reason:** Provides explicit, user-controlled track switching with stable navigation state across refreshes and direct links.
+
+14. **Area:** Web UI design system  
+   **Decision:** Standardize web UI implementation on Material Design via MUI and avoid introducing shadcn/ui unless explicitly requested for a specific task.  
+   **Reason:** Keeps component behavior, accessibility, and visual language consistent across learner and admin experiences.
+
+15. **Area:** Finger Spelling training data  
+   **Decision:** Treat Finger Spelling dataset as image-based labeled hand-shape data for training and pipeline design.  
+   **Reason:** Aligns model and data pipeline assumptions with actual data format and avoids incorrect video-first implementation choices.
+
+16. **Area:** Developer onboarding docs  
+   **Decision:** Maintain a root README with explicit prerequisites, env setup, migration/seed workflow, run commands, and troubleshooting for local development.  
+   **Reason:** Reduces setup friction and standardizes local run procedures across contributors.

@@ -36,6 +36,7 @@ The platform has three surfaces:
 | Layer | Technology | Reason |
 |---|---|---|
 | **Web Frontend** | Next.js 14 (App Router) + TypeScript | SSR, RSC, SEO, admin panel |
+| **Web UI System** | Material Design (Material UI / MUI) | Consistent, accessible component behavior across learner and admin surfaces |
 | **Mobile App** | React Native + Expo (Android-first) | Native camera, offline SQLite, Play Store |
 | **Backend API** | **FastAPI (Python)** | Single unified API for web + mobile; native home for AI model |
 | **Database** | PostgreSQL | Relational progress tracking |
@@ -43,7 +44,7 @@ The platform has three surfaces:
 | **Auth** | FastAPI + OAuth2 / JWT; Google OAuth via `authlib` | Single auth source for web + mobile |
 | **Media Storage** | Cloudflare R2 + CDN | Low-egress cost, fast delivery to Cambodia |
 | **AI — Signs** | MediaPipe Holistic + custom KSL classifier (TensorFlow/PyTorch) | Full-body + hand landmark scoring |
-| **AI — Finger Spelling** | MediaPipe Hands + letter classifier | Isolated hand shape per letter |
+| **AI — Finger Spelling** | MediaPipe Hands + letter classifier | Isolated hand shape per letter using an image-based labeled dataset |
 | **Offline (Mobile)** | WatermelonDB + Expo FileSystem video cache | Lesson content + videos cached on-device |
 | **Monorepo** | Turborepo | Share types, API clients, Zod schemas across web + mobile |
 
@@ -397,6 +398,7 @@ Rules:
 #### Finger Spelling AI Practice
 
 - Separate flow and endpoint from Sign Language
+- Training data source is image-based (labeled hand-shape images), not video clips
 - User selects a letter or a word to practice
 - MediaPipe Hands only (no body pose) → POST to `/practice/spelling/evaluate`
 - For `WORD_SPELL`: evaluates letter-by-letter in sequence, shows which letters were correct
@@ -485,6 +487,7 @@ PATCH /admin/videos/{video_id}/reject
 8. **All media URLs use environment variables.** Never hardcode R2 or CDN URLs — always use `settings.MEDIA_BASE_URL`.
 9. **Khmer-first UI.** Default language is Khmer (`km`). English is secondary. Use `next-intl` (web) and `i18n-js` (mobile) with shared translation keys from `packages/shared`.
 10. **All APIs must be mobile-compatible.** Pagination on all list endpoints (`?page=1&limit=20`), JWT Bearer auth (no session cookies for mobile), lean response payloads.
+11. **Finger Spelling dataset is image-based.** For model training and dataset pipeline decisions, treat Finger Spelling source data as labeled images; do not assume video-based datasets for this track unless explicitly introduced later.
 
 ---
 
@@ -560,6 +563,7 @@ apps/mobile/                          ← React Native + Expo (spec TBD)
 - **Typography:** Noto Sans Khmer (Khmer) + Inter (Latin/numbers)
 - **Mascot:** A friendly KSL character (similar to Lingvano's "Mano") — appears during onboarding, lesson starts, and celebrations; the mascot uses KSL gestures in its animations
 - **Track distinction:** Sign Language uses warm red/gold tones; Finger Spelling uses cool blue/teal tones — clear visual identity per track without breaking the shared design system
+- **Component system:** Use Material Design patterns on web via MUI components; avoid mixing with shadcn/ui or other component kits unless explicitly approved
 - **Animations:** Framer Motion (web) for lesson transitions, confetti on completion, streak fire pulse, star fill on milestone
 - **Mobile-first layout:** all web components must be responsive and usable at 375px viewport width
 
@@ -638,6 +642,7 @@ When generating code for this project, Copilot must:
 - **Check `consent_given is True` server-side** before saving any `ContributedVideo` — never trust the client value alone
 - **Keep Sign Language and Finger Spelling strictly separated** — separate routers, services, AI evaluators, and data models; do not merge their logic even when it looks similar
 - **Write loading and error states** for every async UI component on the web frontend
+- **Use Material Design (MUI) for web UI components** and theming by default; do not introduce shadcn/ui in this project unless explicitly requested
 - **Use Zod** (from `packages/shared`) for all API request validation on the web/mobile clients; use Pydantic v2 on the FastAPI side
 - **Comment in Khmer and English** for domain-specific thresholds and business rules (e.g., pass scores, XP values)
 - **Follow Lingvano's UX pattern:** every lesson/drill ends with a score screen — never navigate away mid-session without a confirmation dialog
