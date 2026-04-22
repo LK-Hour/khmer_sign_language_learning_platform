@@ -33,6 +33,9 @@
 - Wired quiz result navigation pages so chapter/section submissions flow into dedicated result screens.
 - Added a real Google Sign-In web client flow using Google Identity Services on the login page, posting ID tokens to backend `/auth/google`.
 - Implemented persistent active-track selection (`sign-language` / `finger-spelling`) on dashboard using query param + local storage, and wired home track cards to deep-link into the selected track.
+- Standardized project guidance to use Material Design (MUI) for web UI and avoid shadcn/ui unless explicitly requested.
+- Added explicit project rule that Finger Spelling training dataset is image-based (labeled hand-shape images), not video-based.
+- Added a comprehensive root README with version requirements, environment setup, migration/seed steps, run commands, and troubleshooting notes.
 
 ## In Progress
 
