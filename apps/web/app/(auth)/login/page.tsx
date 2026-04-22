@@ -154,12 +154,6 @@ export default function LoginPage(): JSX.Element {
   return (
     <main style={{ padding: "2rem", maxWidth: 560, margin: "0 auto" }}>
       <h1>Login</h1>
-      <div style={{ marginBottom: "1rem" }} ref={googleContainerRef} />
-      {!process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ? (
-        <p style={{ marginBottom: "1rem", color: "#666" }}>
-          Google Sign-In is disabled. Add NEXT_PUBLIC_GOOGLE_CLIENT_ID to enable it.
-        </p>
-      ) : null}
       <form style={{ display: "grid", gap: "1rem" }} onSubmit={onSubmit}>
         <label>
           Email
@@ -188,6 +182,12 @@ export default function LoginPage(): JSX.Element {
           {isSubmitting ? "Signing in..." : "Sign in"}
         </button>
       </form>
+      <div style={{ marginBottom: "1rem" }} ref={googleContainerRef} />
+      {!process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ? (
+        <p style={{ marginBottom: "1rem", color: "#666" }}>
+          Google Sign-In is disabled. Add NEXT_PUBLIC_GOOGLE_CLIENT_ID to enable it.
+        </p>
+      ) : null}
       {errorMessage ? (
         <p style={{ marginTop: "1rem", color: "#C0392B" }}>Failed to login: {errorMessage}</p>
       ) : null}
