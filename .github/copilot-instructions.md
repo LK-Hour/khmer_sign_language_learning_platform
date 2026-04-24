@@ -286,6 +286,15 @@ class ContributedVideo(Base):
     created_at: datetime
 ```
 
+### 4.5 Dataset types
+- Signs Language:
+    - We store it only as video with folder name as label for example (/សៀវភៅ/សៀវភៅ_១.mp4, /សៀវភៅ/សៀវភៅ_២.mp4, /សៀវភៅ/សៀវភៅ_៣.mp4. etc.) and the label is សៀវភៅ
+    - The dataset is video-based, so we extract holistic landmarks from the videos
+- Finger Spelling:
+    - We store it as labeled images of hand shapes for each letter (A.jpg, B.jpg, C.jpg, etc.)
+    - The dataset is image-based, so we extract hand landmarks from the images
+
+
 ---
 
 ## 5. Feature Specifications
@@ -614,6 +623,11 @@ apps/mobile/                          ← React Native + Expo (spec TBD)
 - [ ] Offline progress sync via `POST /sync/progress` when reconnected
 - [ ] FCM push notifications (streak reminders)
 - [ ] Play Store release
+
+---
+## 11. Languages
+- Use i18n for all user-facing text;  to Khmer (`km`), with English (`en`) as secondary 
+
 
 ---
 

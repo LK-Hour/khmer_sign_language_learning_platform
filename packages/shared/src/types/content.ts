@@ -99,6 +99,15 @@ export type DrillDetail = {
   exercises: DrillExercise[];
 };
 
+export type FingerSpellingDatasetImage = {
+  id: string;
+  letter: string;
+  imageUrl: string;
+  handLandmarksJson: string | null;
+  sourceContributionId: string | null;
+  createdAt: string;
+};
+
 export type QuizQuestion = {
   exerciseId: string;
   type: ExerciseType | SpellingExerciseType;

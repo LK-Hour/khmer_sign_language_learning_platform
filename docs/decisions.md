@@ -62,6 +62,14 @@
    **Decision:** Treat Finger Spelling dataset as image-based labeled hand-shape data for training and pipeline design.  
    **Reason:** Aligns model and data pipeline assumptions with actual data format and avoids incorrect video-first implementation choices.
 
-16. **Area:** Developer onboarding docs  
+16. **Area:** Finger Spelling dataset storage  
+   **Decision:** Keep lesson/drill media separate from training dataset storage by using a dedicated `finger_spelling_dataset_images` table for image-based training samples and provenance.  
+   **Reason:** Prevents the exercise media model from doubling as the training dataset and keeps the backend contracts aligned with the documented image-based pipeline.
+
+17. **Area:** Sign Language dataset storage  
+   **Decision:** Keep lesson media separate from training dataset storage by using a dedicated `sign_language_dataset_videos` table for video-based training samples and provenance.  
+   **Reason:** Prevents the exercise media model from doubling as the training dataset and keeps the backend contracts aligned with the documented video-based pipeline.
+
+18. **Area:** Developer onboarding docs  
    **Decision:** Maintain a root README with explicit prerequisites, env setup, migration/seed workflow, run commands, and troubleshooting for local development.  
    **Reason:** Reduces setup friction and standardizes local run procedures across contributors.

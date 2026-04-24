@@ -32,4 +32,6 @@
 - [x] Persist active learning track selection in dashboard and deep-link home track cards into selected track
 - [x] Enforce Material Design (MUI) as the default web UI system and document no-shadcn convention in project instructions
 - [x] Document Finger Spelling dataset as image-based for AI training and data pipeline decisions
+- [x] Split out finger-spelling dataset image storage and update contribution payloads
+- [x] Split out sign-language dataset video storage
 - [x] Write a complete root README covering setup, version requirements, run steps, and troubleshooting

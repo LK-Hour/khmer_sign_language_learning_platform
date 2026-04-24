@@ -26,7 +26,7 @@ class EvaluateSpellingRequest(BaseModel):
 
 class ContributeRequest(BaseModel):
     label: str
-    video_url: str
+    video_blob: str
     consent: bool = False
 
 
@@ -59,7 +59,7 @@ async def contribute_sign(
             user_id=current_user.id,
             track=LearningTrack.SIGN_LANGUAGE,
             sign_label=payload.label,
-            video_url=payload.video_url,
+            video_url=payload.video_blob,
             consent_given=True,
             status=ContributedVideoStatus.PENDING,
         )
@@ -85,7 +85,7 @@ async def contribute_spelling(
             user_id=current_user.id,
             track=LearningTrack.FINGER_SPELLING,
             sign_label=payload.label,
-            video_url=payload.video_url,
+            video_url=payload.video_blob,
             consent_given=True,
             status=ContributedVideoStatus.PENDING,
         )

@@ -7,16 +7,20 @@ from app.db.models.content import (
     SpellingSection,
     Unit,
 )
+from app.db.models.finger_spelling_dataset import FingerSpellingDatasetImage
 from app.db.models.contributed_video import ContributedVideo
 from app.db.models.progress import UserProgress
+from app.db.models.sign_language_dataset import SignLanguageDatasetVideo
 from app.db.models.user import User, UserStats
 
 __all__ = [
     "Chapter",
     "ContributedVideo",
+    "FingerSpellingDatasetImage",
     "DrillSet",
     "Exercise",
     "Lesson",
+    "SignLanguageDatasetVideo",
     "SpellingExercise",
     "SpellingSection",
     "Unit",

@@ -35,6 +35,8 @@
 - Implemented persistent active-track selection (`sign-language` / `finger-spelling`) on dashboard using query param + local storage, and wired home track cards to deep-link into the selected track.
 - Standardized project guidance to use Material Design (MUI) for web UI and avoid shadcn/ui unless explicitly requested.
 - Added explicit project rule that Finger Spelling training dataset is image-based (labeled hand-shape images), not video-based.
+- Added a dedicated finger-spelling dataset image table and updated contribution payloads to use `video_blob`.
+- Added a dedicated sign-language dataset video table to keep training data separate from lesson media.
 - Added a comprehensive root README with version requirements, environment setup, migration/seed steps, run commands, and troubleshooting notes.
 
 ## In Progress
