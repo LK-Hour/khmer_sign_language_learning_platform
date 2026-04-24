@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.core.security import hash_password
-from app.models.content import (
+from app.db_models.content import (
     Chapter,
     DrillSet,
     Exercise,
@@ -18,7 +18,7 @@ from app.models.content import (
     SpellingSection,
     Unit,
 )
-from app.models.user import User, UserRole, UserStats
+from app.db_models.user import User, UserRole, UserStats
 
 
 def _media_url(path: str) -> str:

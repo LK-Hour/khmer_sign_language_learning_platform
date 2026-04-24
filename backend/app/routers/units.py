@@ -7,7 +7,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db_session
-from app.models.content import Chapter, Lesson, Unit
+from app.db_models.content import Chapter, Lesson, Unit
 
 router = APIRouter(tags=["sign-language"])
 
