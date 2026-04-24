@@ -9,9 +9,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from app.db.session import AsyncSessionLocal
 from app.services.seeding import seed_test_accounts
 
-DEFAULT_LEARNER_EMAIL = "learner@test.ksl"
-DEFAULT_ADMIN_EMAIL = "admin@test.ksl"
-DEFAULT_TEST_PASSWORD = "Test@123456"
+DEFAULT_LEARNER_EMAIL = "learner@test.com"
+DEFAULT_ADMIN_EMAIL = "admin@test.com"
+DEFAULT_TEST_PASSWORD = "Test@123"
 
 
 async def main() -> None:

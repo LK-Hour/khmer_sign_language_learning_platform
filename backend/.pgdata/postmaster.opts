@@ -1,1 +1,1 @@
-/usr/bin/postgres "-D" ".pgdata" "-p" "5432" "-k" "/home/hour/Documents/CADT/Internship/ksl_project/backend/.pgsocket"
+/usr/bin/postgres "-D" ".pgdata" "-p" "5433" "-k" "/home/hour/Documents/CADT/Internship/ksl_project/backend/.pgsocket"

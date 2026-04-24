@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
     app_env: str = "development"
-    database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/ksl"
+    database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5433/ksl"
     media_base_url: str = "https://cdn.example.com"
     jwt_secret_key: str = "change-this-secret"
     jwt_algorithm: str = "HS256"
