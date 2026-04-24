@@ -24,7 +24,7 @@ This is a monorepo containing:
 - Node.js: 20+
 - npm: 11.12.1 (project package manager lock)
 - Python: 3.12+ (backend requires-python >= 3.12)
-- PostgreSQL: 14+ (local default config uses localhost:5432)
+- PostgreSQL: 14+ (local default config uses localhost:5433)
 
 ## Repository Structure
 
@@ -44,7 +44,7 @@ NEXT_PUBLIC_GOOGLE_CLIENT_ID=
 2. backend/.env
 
 APP_ENV=development
-DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost:5432/ksl
+DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost:5433/ksl
 MEDIA_BASE_URL=https://cdn.example.com
 JWT_SECRET_KEY=change-this-secret
 JWT_ALGORITHM=HS256
@@ -73,7 +73,7 @@ Backend virtual environment and Python packages:
 
 ## Database Setup
 
-1. Ensure PostgreSQL is running on localhost:5432.
+1. Ensure PostgreSQL is running on localhost:5433.
 2. Create database ksl(khmer sign language) if needed.
 3. Run migrations.
 4. Seed phase 1 content and test users.
