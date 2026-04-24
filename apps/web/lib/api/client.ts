@@ -17,6 +17,8 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8
 const ACCESS_TOKEN_KEY = "ksl_access_token";
 const REFRESH_TOKEN_KEY = "ksl_refresh_token";
 
+export type AuthRole = "ADMIN" | "LEARNER" | "UNKNOWN";
+
 function isBrowser(): boolean {
   return typeof window !== "undefined";
 }
@@ -26,6 +28,40 @@ function readAccessToken(): string | null {
     return null;
   }
   return window.localStorage.getItem(ACCESS_TOKEN_KEY);
+}
+
+function decodeJwtPayload(token: string): Record<string, unknown> | null {
+  const parts = token.split(".");
+  if (parts.length !== 3) {
+    return null;
+  }
+
+  try {
+    const base64 = parts[1].replace(/-/g, "+").replace(/_/g, "/");
+    const json = atob(base64);
+    return JSON.parse(json) as Record<string, unknown>;
+  } catch {
+    return null;
+  }
+}
+
+export function getAccessToken(): string | null {
+  return readAccessToken();
+}
+
+export function getCurrentRole(): AuthRole {
+  const token = readAccessToken();
+  if (!token) {
+    return "UNKNOWN";
+  }
+
+  const payload = decodeJwtPayload(token);
+  const role = payload?.role;
+  if (role === "ADMIN" || role === "LEARNER") {
+    return role;
+  }
+
+  return "UNKNOWN";
 }
 
 export function hasAccessToken(): boolean {
