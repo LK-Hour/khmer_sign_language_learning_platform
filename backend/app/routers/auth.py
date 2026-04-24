@@ -19,7 +19,7 @@ from app.core.security import (
     verify_password,
 )
 from app.db.session import get_db_session
-from app.db_models.user import User, UserStats, UserRole
+from app.db.models.user import User, UserStats, UserRole
 from app.schemas.auth import GoogleAuthRequest, LoginRequest, RefreshRequest, RegisterRequest, TokenResponse
 from app.schemas.common import MessageResponse
 

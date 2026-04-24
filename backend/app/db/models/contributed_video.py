@@ -8,7 +8,7 @@ from sqlalchemy import DateTime, Enum, ForeignKey, String, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.base import Base
-from app.db_models.progress import LearningTrack
+from app.db.models.progress import LearningTrack
 
 
 class ContributedVideoStatus(str, enum.Enum):

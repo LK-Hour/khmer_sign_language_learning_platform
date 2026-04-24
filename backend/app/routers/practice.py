@@ -6,8 +6,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.deps import CurrentUser, get_current_user
 from app.db.session import get_db_session
-from app.db_models.contributed_video import ContributedVideo, ContributedVideoStatus
-from app.db_models.progress import LearningTrack
+from app.db.models.contributed_video import ContributedVideo, ContributedVideoStatus
+from app.db.models.progress import LearningTrack
 from app.services.ai.sign_evaluator import evaluate_sign_landmarks
 from app.services.ai.spelling_evaluator import evaluate_spelling_landmarks
 

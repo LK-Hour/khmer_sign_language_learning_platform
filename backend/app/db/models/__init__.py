@@ -1,4 +1,4 @@
-from app.db_models.content import (
+from app.db.models.content import (
     Chapter,
     DrillSet,
     Exercise,
@@ -7,9 +7,9 @@ from app.db_models.content import (
     SpellingSection,
     Unit,
 )
-from app.db_models.contributed_video import ContributedVideo
-from app.db_models.progress import UserProgress
-from app.db_models.user import User, UserStats
+from app.db.models.contributed_video import ContributedVideo
+from app.db.models.progress import UserProgress
+from app.db.models.user import User, UserStats
 
 __all__ = [
     "Chapter",

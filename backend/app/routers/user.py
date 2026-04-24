@@ -7,8 +7,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.deps import CurrentUser, get_current_user
 from app.db.session import get_db_session
-from app.db_models.progress import UserProgress
-from app.db_models.user import UserStats
+from app.db.models.progress import UserProgress
+from app.db.models.user import UserStats
 
 router = APIRouter(prefix="/user", tags=["user"])
 

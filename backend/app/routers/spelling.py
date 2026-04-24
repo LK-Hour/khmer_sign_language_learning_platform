@@ -10,8 +10,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.deps import CurrentUser, get_current_user
 from app.db.session import get_db_session
-from app.db_models.content import DrillSet, SpellingExercise, SpellingSection
-from app.db_models.progress import LearningTrack, UserProgress
+from app.db.models.content import DrillSet, SpellingExercise, SpellingSection
+from app.db.models.progress import LearningTrack, UserProgress
 from app.schemas.progress import CompletionRequest
 from app.services.gamification import apply_completion_rewards
 

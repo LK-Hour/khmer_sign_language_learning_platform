@@ -5,7 +5,7 @@ from zoneinfo import ZoneInfo
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.db_models.user import UserStats
+from app.db.models.user import UserStats
 
 
 def compute_exercise_xp(base_xp: int, accuracy_percent: float) -> int:
