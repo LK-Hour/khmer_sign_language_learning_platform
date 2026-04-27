@@ -1,21 +1,92 @@
+/* Import Noto Sans Khmer from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
   --bg: #ffffff;
   --text: #171717;
+  
+  /* Cambodian brand colors */
+  --primary-red: #C0392B;
+  --primary-red-light: #E74C3C;
+  --primary-red-dark: #A93226;
+  --accent-gold: #F1C40F;
+  --accent-gold-dark: #D4AF37;
+  --secondary-blue: #2980B9;
+  --secondary-blue-light: #3498DB;
+  
+  /* Neutral grays */
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+  
+  /* Semantic colors */
+  --success: #27AE60;
+  --warning: #E67E22;
+  --error: #C0392B;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   margin: 0;
+  padding: 0;
   color: var(--text);
   background: var(--bg);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Noto Sans Khmer', 'Inter', system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improve focus visibility for accessibility */
+:focus-visible {
+  outline: 2px solid var(--primary-red);
+  outline-offset: 2px;
+}
+
+/* Remove default button styles */
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Remove default link underline */
+a {
+  color: var(--primary-red);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-red-dark);
+  text-decoration: underline;
+}
+
+/* Smooth transitions globally */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }

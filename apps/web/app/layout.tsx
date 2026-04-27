@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 import AppNavbar from "@/components/navigation/AppNavbar";
+import { ThemeProviders } from "@/app/providers";
 
 export const metadata: Metadata = {
   title: "KSL Learning Platform",
@@ -15,10 +16,12 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
-    <html lang="en">
+    <html lang="km">
       <body>
-        <AppNavbar />
-        {children}
+        <ThemeProviders>
+          <AppNavbar />
+          {children}
+        </ThemeProviders>
       </body>
     </html>
   );
