@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "dictionary": "Dictionary",
+    "profile": "Profile",
+    "admin": "Admin Panel",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "logout": "Logout"
+  },
+  "home": {
+    "title": "KSL Learning Platform",
+    "subtitle": "Choose a learning track to continue.",
+    "signLanguage": {
+      "title": "Sign Language",
+      "icon": "sign-language",
+      "description": "Learn full KSL signs, phrases, and sentence patterns."
+    },
+    "fingerSpelling": {
+      "title": "Finger Spelling",
+      "icon": "finger-spelling",
+      "description": "Practice the KSL alphabet with drills and quizzes."
+    },
+    "start": "Start Learning"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "email": "Email",
+      "password": "Password",
+      "signInButton": "Sign in",
+      "signInWithGoogle": "Sign in with Google",
+      "noAccount": "Don't have an account?",
+      "register": "Create one",
+      "errorMessage": "Failed to sign in",
+      "enterEmail": "Please enter your email",
+      "enterPassword": "Please enter your password"
+    },
+    "register": {
+      "title": "Create Account",
+      "displayName": "Display name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "createButton": "Create account",
+      "creatingAccount": "Creating account...",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "errorMessage": "Failed to create account",
+      "passwordMinLength": "Password must be at least 8 characters"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "streak": "day streak",
+    "streakIcon": "streak",
+    "xp": "XP",
+    "xpIcon": "xp",
+    "badges": "badges",
+    "badgeIcon": "badge",
+    "continueLesson": "Continue",
+    "noUnits": "No units yet.",
+    "noSections": "No sections yet.",
+    "signLanguage": "Sign Language",
+    "fingerSpelling": "Finger Spelling",
+    "switchTrack": "Switch Track",
+    "loadingDashboard": "Loading dashboard...",
+    "failedToLoad": "Failed to load dashboard"
+  },
+  "dictionary": {
+    "title": "Dictionary",
+    "search": "Search signs or finger letters",
+    "filterByTrack": "Filter by track",
+    "signLanguage": "Sign Language",
+    "fingerSpelling": "Finger Spelling",
+    "noResults": "No results found"
+  },
+  "profile": {
+    "title": "Profile",
+    "myStats": "My Stats",
+    "totalXP": "Total XP",
+    "longestStreak": "Longest Streak",
+    "badges": "Badges",
+    "settings": "Settings",
+    "language": "Language",
+    "timezone": "Timezone",
+    "saveChanges": "Save Changes"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "retry": "Retry",
+    "tryAgain": "Try Again",
+    "goHome": "Go Home",
+    "goToDashboard": "Go to Dashboard",
+    "pleaseLoginFirst": "Please login first."
+  },
+  "lesson": {
+    "title": "Lesson",
+    "exercise": "Exercise",
+    "of": "of",
+    "complete": "Complete",
+    "score": "Score",
+    "xpEarned": "XP Earned",
+    "stars": "Stars",
+    "nextLesson": "Next Lesson",
+    "returnToDashboard": "Return to Dashboard",
+    "turtleMode": "Turtle mode (0.5x)",
+    "turtleModeIcon": "turtle-mode",
+    "correct": "Correct!",
+    "tryAgain": "Try again"
+  },
+  "quiz": {
+    "title": "Quiz",
+    "question": "Question",
+    "of": "of",
+    "passThreshold": "Pass threshold",
+    "yourScore": "Your score",
+    "passed": "You passed!",
+    "failed": "You didn't pass this time",
+    "retryQuiz": "Retry Quiz",
+    "continueToNext": "Continue"
+  },
+  "practice": {
+    "title": "AI Practice",
+    "selectSign": "Select a sign to practice",
+    "selectLetter": "Select a letter to practice",
+    "cameraPermission": "Camera permission needed",
+    "allowCamera": "Allow camera access to start",
+    "startPractice": "Start Practice",
+    "score": "Score",
+    "feedback": "Feedback",
+    "tryAgain": "Try Again",
+    "contributeVideo": "Contribute this video",
+    "contributeMessage": "Great job! Would you like to contribute this sign to our KSL dataset?",
+    "noThanks": "No thanks",
+    "contributeNow": "Yes, contribute"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "users": "Users",
+    "videos": "Video Review",
+    "videosIcon": "video",
+    "content": "Content",
+    "usersManagement": "User Management",
+    "videoReview": "Video Review Queue",
+    "approve": "Approve",
+    "approveIcon": "correct",
+    "reject": "Reject",
+    "rejectReason": "Rejection reason",
+    "noVideosToReview": "No videos to review",
+    "approvedSuccessfully": "Approved successfully",
+    "rejectedSuccessfully": "Rejected successfully"
+  }
+}

@@ -16,7 +16,7 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
-    <html lang="km">
+    <html lang="en">
       <body>
         <ThemeProviders>
           <AppNavbar />
