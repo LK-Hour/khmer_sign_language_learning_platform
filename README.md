@@ -71,12 +71,42 @@ Backend virtual environment and Python packages:
 - source .venv/bin/activate
 - pip install -e .
 
+## Docker Setup
+
+This project uses Docker Compose to run PostgreSQL. Install Docker & Docker Compose from [docs.docker.com](https://docs.docker.com/get-docker/).
+
+**Start PostgreSQL container:**
+
+From the repository root:
+
+```bash
+docker-compose up -d
+```
+
+This starts the `ksl-postgres` container on `localhost:5433` with:
+- Database: `ksl`
+- User: `postgres`
+- Password: `postgres`
+
+**Useful Docker commands:**
+
+```bash
+# Check container status
+docker ps
+
+# Stop containers
+docker-compose down
+
+# Stop and remove all data (reset database)
+docker-compose down -v
+
+```
+
 ## Database Setup
 
-1. Ensure PostgreSQL is running on localhost:5433.
-2. Create database ksl(khmer sign language) if needed.
-3. Run migrations.
-4. Seed phase 1 content and test users.
+**Prerequisites:** Docker container must be running (see §Docker Setup).
+
+The database `ksl` is automatically created by Docker Compose. Run migrations and seed content:
 
 Commands (from backend):
 
