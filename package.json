@@ -15,5 +15,9 @@
   },
   "devDependencies": {
     "turbo": "^2.5.0"
+  },
+  "dependencies": {
+    "next": "^16.2.4",
+    "next-intl": "^4.9.2"
   }
 }

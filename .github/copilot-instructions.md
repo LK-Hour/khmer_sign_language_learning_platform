@@ -111,7 +111,6 @@ When a user lands on the dashboard after login, **before seeing any lesson conte
 └─────────────────────────────────────────────────────┘
 ```
 
-- Users can **switch tracks** anytime from the sidebar/nav — progress in each track is saved independently
 - A user's active track is stored in their session/local state, not persisted to DB (they can freely switch)
 - The **gamification engine is shared** — XP, streaks, and badges span both tracks
 
@@ -580,9 +579,20 @@ apps/mobile/                          ← React Native + Expo (spec TBD)
 
 ## 10. Development Phases
 
-### Phase 1 — Core Learning Loop (MVP)
+### Phase 1 — Core Learning Loop (MVP) + Design System + i18n
+**Design & Internationalization Setup:**
+- [x] Install Material-UI (@mui/material) + Emotion styling
+- [x] Install Framer Motion for animations
+- [x] Create MUI theme with Cambodian colors (deep red, gold, blue)
+- [x] Add Google Fonts: Noto Sans Khmer + Inter
+- [x] Setup next-intl for i18n (Khmer as default locale, English as secondary)
+- [x] Create translation files for en.json and km.json
+- [x] Configure middleware for locale routing
+- [x] Add design tokens CSS variables
+
+**Core Functionality:**
 - [ ] Auth (Google OAuth + email/password via FastAPI + JWT)
-- [ ] Track selection screen (home)
+- [ ] Track selection screen (home) — styled with MUI + translations
 - [ ] Sign Language: Unit 1 full content seeded
 - [ ] Lesson player: VIDEO_WATCH, SIGN_MATCH, PICTURE_MATCH
 - [ ] Chapter quiz (Sign Language)
@@ -590,7 +600,7 @@ apps/mobile/                          ← React Native + Expo (spec TBD)
 - [ ] Drill player: LETTER_WATCH, LETTER_MATCH
 - [ ] Section quiz (Finger Spelling)
 - [ ] Shared progress tracking, XP, streak
-- [ ] Learner dashboard (both tracks)
+- [ ] Learner dashboard (both tracks) — with i18n labels
 
 ### Phase 2 — AI Practice
 - [ ] MediaPipe Holistic integration (web browser via WASM)
@@ -625,13 +635,53 @@ apps/mobile/                          ← React Native + Expo (spec TBD)
 - [ ] Play Store release
 
 ---
-## 11. Languages
-- Use i18n for all user-facing text;  to Khmer (`km`), with English (`en`) as secondary 
+## 11. Internationalization (i18n)
+
+**Setup & Requirements:**
+- **Library:** `next-intl` (Next.js 14+ native support)
+- **Default Locale:** Khmer (`km`)
+- **Secondary Locale:** English (`en`)
+- **Routing:** Locale-prefixed URLs (`/km/dashboard`, `/en/dashboard`)
+- **Default Strategy:** Khmer-first (`localePrefix: 'as-needed'`)
+
+**File Structure:**
+```
+apps/web/
+├── i18n.ts                      ← Configuration
+├── middleware.ts                ← Locale routing middleware
+├── messages/
+│   ├── en.json                  ← English translations
+│   └── km.json                  ← Khmer translations
+```
+
+**All User-Facing Text Must:**
+1. Use translation keys via `useTranslations()` hook
+2. Never hardcode English or Khmer strings in JSX
+3. Add new keys to both `en.json` and `km.json` simultaneously
+4. Use Khmer labels for Khmer UI elements (e.g., form labels, headings)
+5. Keep Latin/numeric labels in English (e.g., course titles, special terms)
+6. Use proper Khmer typography with Noto Sans Khmer font
+
+**Translation Key Naming Convention:**
+- Group related keys: `nav.home`, `nav.dashboard`, `auth.login.email`
+- Use camelCase for keys: `signInButton`, `createAccountError`
+- Keep values concise (150 chars max per string)
+- Use placeholders for dynamic content: `"lesson {n}"`
+
+**Mobile (React Native) Considerations:**
+- Mobile uses `i18n-js` library (similar structure, different API)
+- Backend returns localized strings or IDs that mobile can translate locally
+- Shared types in `packages/shared` should support i18n keys, not hardcoded text
+
+---
+## 12. Languages
+ 
+
 
 
 ---
 
-## 11. Mobile App Considerations (Pre-Spec)
+## 12. Mobile App Considerations (Pre-Spec)
 
 > Full mobile specification will be written in `mobile-instructions.md`. The following constraints apply to all backend and shared-package decisions made now so the mobile app can be built without backend changes later.
 
@@ -645,7 +695,7 @@ apps/mobile/                          ← React Native + Expo (spec TBD)
 
 ---
 
-## 12. Copilot Behavior Directives
+## 13. Copilot Behavior Directives
 
 When generating code for this project, Copilot must:
 
@@ -669,7 +719,7 @@ When generating code for this project, Copilot must:
 
 ---
 
-## 13. Session Handoff (Cross-Session Memory)
+## 14. Session Handoff (Cross-Session Memory)
 
 Use repository docs as the single source of truth for multi-session continuity:
 

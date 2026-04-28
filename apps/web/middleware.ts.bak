@@ -1,0 +1,2 @@
+// Middleware has been moved to proxy.ts for Next.js 16+
+// See proxy.ts for the actual middleware implementation
