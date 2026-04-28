@@ -17,8 +17,11 @@ export default function AppNavbar(): JSX.Element {
   const pathname = usePathname();
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // Only run on client-side after hydration to prevent mismatch
+    setIsClient(true);
     setIsAuthenticated(hasAccessToken());
   }, [pathname]);
 

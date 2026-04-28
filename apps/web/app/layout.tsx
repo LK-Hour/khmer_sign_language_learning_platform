@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
+import {AppRouterCacheProvider} from '@mui/material-nextjs/v15-appRouter';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
 import './globals.css';
@@ -21,9 +22,11 @@ export default async function RootLayout({ children }: RootLayoutProps): Promise
   return (
     <html suppressHydrationWarning>
       <body>
+        <AppRouterCacheProvider>
         <NextIntlClientProvider locale={locale}>
           {children}
         </NextIntlClientProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

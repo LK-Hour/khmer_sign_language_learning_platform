@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState, use } from "react";
 import type { LessonDetail, LessonExercise } from "@ksl/shared";
 
 import { completeLesson, fetchLessonDetail } from "@/lib/api/client";
+import VideoPlayer from "@/components/lesson/VideoPlayer";
 
 type LessonPageProps = {
   params: Promise<{
@@ -171,8 +172,12 @@ export default function LessonPage({ params }: LessonPageProps): JSX.Element {
         Exercise {index + 1}/{total}
       </p>
       <h2>{currentExercise.type}</h2>
-      <p>Video: {currentExercise.signVideoUrl}</p>
-      <p>Slow motion (🐢): {currentExercise.slowMoVideoUrl}</p>
+      
+      <VideoPlayer
+        videoUrl={currentExercise.signVideoUrl}
+        slowMoUrl={currentExercise.slowMoVideoUrl}
+        title="Watch the sign:"
+      />
 
       {isWatchType ? (
         <button type="button" onClick={() => void finishAnswer(true)} disabled={isCorrect !== null}>

@@ -2,8 +2,13 @@
 Seed script for localhost development using local dataset.
 Uses: /data_set/education_words/24_sign/ for sign language
       /data_set/finger_spelling/ for finger spelling
+
+Usage:
+  python scripts/seed_localhost.py              # Skip if data exists
+  python scripts/seed_localhost.py --force      # Clear old data and reseed
 """
 
+import argparse
 import asyncio
 import json
 import sys
@@ -25,7 +30,7 @@ from app.db.models.content import (
     Unit,
 )
 from app.db.session import AsyncSessionLocal
-from sqlalchemy import select, func
+from sqlalchemy import select, func, text
 
 
 def _media_url(path: str) -> str:
@@ -70,11 +75,22 @@ def _list_local_dataset(category: str) -> dict[str, list[str]]:
     return dataset
 
 
-async def seed_localhost_education_words(db) -> None:
+async def seed_localhost_education_words(db, force: bool = False) -> None:
     """Seed Unit 1 using local education_words dataset."""
     existing_units = await db.scalar(select(func.count()).select_from(Unit))
+    
+    if force and (existing_units or 0) > 0:
+        print("🗑️  Force flag set - clearing old Units data...")
+        await db.execute(text("TRUNCATE TABLE exercises CASCADE"))
+        await db.execute(text("TRUNCATE TABLE lessons CASCADE"))
+        await db.execute(text("TRUNCATE TABLE chapters CASCADE"))
+        await db.execute(text("TRUNCATE TABLE units CASCADE"))
+        await db.commit()
+        existing_units = 0
+    
     if (existing_units or 0) > 0:
-        print("✓ Units already exist, skipping...")
+        print("✓ Units already exist, skipping... (use --force to replace)")
+        return
         return
     
     # Create Unit 1 for education words
@@ -179,11 +195,20 @@ async def seed_localhost_education_words(db) -> None:
     print(f"✓ Seeded Chapter 2 with {len(chapter_2_lessons)} lessons from local dataset")
 
 
-async def seed_localhost_finger_spelling(db) -> None:
+async def seed_localhost_finger_spelling(db, force: bool = False) -> None:
     """Seed finger spelling sections using local dataset."""
     existing_sections = await db.scalar(select(func.count()).select_from(SpellingSection))
+    
+    if force and (existing_sections or 0) > 0:
+        print("🗑️  Force flag set - clearing old Spelling data...")
+        await db.execute("TRUNCATE TABLE spelling_exercises CASCADE")
+        await db.execute("TRUNCATE TABLE drill_sets CASCADE")
+        await db.execute("TRUNCATE TABLE spelling_sections CASCADE")
+        await db.commit()
+        existing_sections = 0
+    
     if (existing_sections or 0) > 0:
-        print("✓ Finger spelling sections already exist, skipping...")
+        print("✓ Finger spelling sections already exist, skipping... (use --force to replace)")
         return
     
     # Get local dataset
@@ -233,12 +258,20 @@ async def seed_localhost_finger_spelling(db) -> None:
 
 
 async def main() -> None:
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description="Seed localhost with local dataset")
+    parser.add_argument("--force", action="store_true", help="Force reseed by clearing existing data")
+    args = parser.parse_args()
+    
     async with AsyncSessionLocal() as session:
         print(f"🌍 Seeding localhost with local dataset from: {settings.local_media_path}")
         print(f"📌 Media Base URL: {settings.media_base_url}\n")
         
-        await seed_localhost_education_words(session)
-        await seed_localhost_finger_spelling(session)
+        if args.force:
+            print("⚠️  Using --force flag: old data will be replaced\n")
+        
+        await seed_localhost_education_words(session, force=args.force)
+        await seed_localhost_finger_spelling(session, force=args.force)
         
         print("\n✅ Localhost seeding complete!")
 

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
+import {AppRouterCacheProvider} from '@mui/material-nextjs/v15-appRouter';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
 import './globals.css';
@@ -15,14 +16,17 @@ type RootLayoutProps = {
 
 export default async function RootLayout({ children }: RootLayoutProps): Promise<JSX.Element> {
   // Get locale from the request (provided by next-intl middleware)
-  const locale = await getLocale();
+  // Use 'en' as fallback for non-locale-prefixed routes like /_not-found
+  const locale = (await getLocale()) || 'en';
 
   return (
     <html suppressHydrationWarning>
       <body>
-        <NextIntlClientProvider>
+        <AppRouterCacheProvider>
+        <NextIntlClientProvider locale={locale}>
           {children}
         </NextIntlClientProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
