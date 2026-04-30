@@ -11,3 +11,5 @@ __pycache__/
 *.pt
 /data_set
 /docs.local
+/apps/web/app/\[locale\]/(learner)/finger-spelling/finger_spelling_dataset
+/docs/local/

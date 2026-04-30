@@ -1,6 +1,9 @@
+import json
 from datetime import date, datetime, timedelta
 from uuid import UUID
 from zoneinfo import ZoneInfo
+
+from collections.abc import Sequence
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -47,3 +50,60 @@ async def apply_completion_rewards(db: AsyncSession, user_id: UUID, score: float
     if stats.current_streak > stats.longest_streak:
         stats.longest_streak = stats.current_streak
     stats.last_active_date = today
+
+
+async def award_xp_and_badges(
+    db: AsyncSession,
+    user_id: UUID,
+    xp: int,
+    badges: Sequence[str],
+    timezone_name: str,
+) -> None:
+    """Award custom XP and badges (used by quiz/test-mode).
+
+    Business rules (Khmer + English):
+    - XP formula can differ per feature (quiz vs lesson). Quiz XP is computed by the quiz service.
+      (XP គណនា​នៅ service របស់ quiz ដើម្បីអាចកែប្រែ logic ងាយ)
+    - Streak must remain server-side and based on `timezone_name`.
+      (Streak ត្រូវគណនាផ្នែក server ដោយប្រើ timezone របស់អ្នកប្រើ)
+    """
+
+    stats = await db.scalar(select(UserStats).where(UserStats.user_id == user_id))
+    if stats is None:
+        stats = UserStats(
+            user_id=user_id,
+            current_streak=0,
+            longest_streak=0,
+            total_xp=0,
+            badges_json="[]",
+        )
+        db.add(stats)
+        await db.flush()
+
+    today = _current_date(timezone_name)
+    stats.total_xp += max(0, int(xp))
+
+    if stats.last_active_date is None:
+        stats.current_streak = 1
+    elif stats.last_active_date == today:
+        stats.current_streak = stats.current_streak
+    elif stats.last_active_date == today - timedelta(days=1):
+        stats.current_streak += 1
+    else:
+        stats.current_streak = 1
+    if stats.current_streak > stats.longest_streak:
+        stats.longest_streak = stats.current_streak
+    stats.last_active_date = today
+
+    try:
+        existing = json.loads(stats.badges_json or "[]")
+        if not isinstance(existing, list):
+            existing = []
+    except Exception:
+        existing = []
+
+    for badge in badges:
+        if badge and badge not in existing:
+            existing.append(badge)
+
+    stats.badges_json = json.dumps(existing, ensure_ascii=False)

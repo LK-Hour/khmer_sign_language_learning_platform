@@ -16,6 +16,7 @@ from app.routers import (
     sync,
     units,
     user,
+    video_quiz,
 )
 
 
@@ -39,6 +40,7 @@ def create_app() -> FastAPI:
     app.include_router(units.router)
     app.include_router(lessons.router)
     app.include_router(quiz.router)
+    app.include_router(video_quiz.router)
     app.include_router(spelling.router)
     app.include_router(practice.router)
     app.include_router(dictionary.router)

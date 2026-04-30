@@ -112,6 +112,14 @@
     "goToDashboard": "ទៅផ្ទាំងគ្រប់គ្រង",
     "pleaseLoginFirst": "សូមចូលគណនីជាមុនសិន"
   },
+  "buttons": {
+    "start": "ចាប់ផ្តើម",
+    "submit": "ដាក់ស្នើ",
+    "previous": "មុន",
+    "next": "បន្ទាប់",
+    "back": "ថយក្រោយ",
+    "continue": "បន្ត"
+  },
   "lesson": {
     "title": "មេរៀន",
     "exercise": "លំហាត់",
@@ -136,12 +144,31 @@
     "passed": "អ្នកបានឆ្លង!",
     "failed": "អ្នកមិនឆ្លងលើកនេះទេ",
     "retryQuiz": "ព្យាយាមសាកល្បងម្តងទៀត",
+<<<<<<< Updated upstream:apps/web/messages/kh.json
     "continueToNext": "បន្ត"
     },
     "practice": {
       "title": "ការអនុវត្តជាមួយ បញ្ញាសុប្បនិម្មិត(AI)",
       "selectSign": "ជ្រើសរើសកាយវិការដែលត្រូវអនុវត្ត",
     "selectLetter": "ជ្រើសរើសលិខិតដែលត្រូវអនុវត្ត",
+=======
+    "continueToNext": "បន្ត",
+    "videoWordQuizzes": "វីដេអូ Word Quiz",
+    "noQuizzesAvailable": "មិនមាន Quiz ដែលមាន",
+    "questions": "សំណួរ",
+    "yourAnswer": "ចម្លើយរបស់អ្នក",
+    "question": "សំណួរ",
+    "scoreLabel": "ពិន្ទុ",
+    "earned": "ក្នុង",
+    "correct": "ត្រឹមត្រូវ",
+    "badgesEarned": "ឌាចដែលទទួលបាន",
+    "needsImprovement": "ត្រូវការការលម្អិត"
+  },
+  "practice": {
+    "title": "AI Practice",
+    "selectSign": "ជ្រើសរើ､សញ្ញាដែលត្រូវអនុវត្ត",
+    "selectLetter": "ជ្រើសរើលិខិតដែលត្រូវអនុវត្ត",
+>>>>>>> Stashed changes:apps/web/messages/km.json
     "cameraPermission": "ត្រូវការការអនុញ្ញាតកាមេរ៉ា",
     "allowCamera": "អនុញ្ញាតឱ្យប្រើប្រាស់កាមេរ៉ា",
     "startPractice": "ចាប់ផ្តើមធ្វើលំហាត់",
@@ -164,8 +191,18 @@
     "reject": "ច្រាលចោល",
     "rejectReason": "ហេតុផលច្រាលចោល",
     "noVideosToReview": "មិនមានវីដេអូដែលត្រូវពិនិត្យទេ",
+<<<<<<< Updated upstream:apps/web/messages/kh.json
     "approvedSuccessfully": "បានអនុម័តដោយជោគជ័យ",
     "rejectedSuccessfully": "បានបដិសេធដោយជោគជ័យ"
 
+=======
+    "approvedSuccessfully": "ឯកភាពបានដោះស្រាយដោយជោគជ័យ",
+    "rejectedSuccessfully": "ច្រាលបនបានដោះស្រាយដោយជោគជ័យ"
+  },
+  "errors": {
+    "unknown": "កំហុសមិនរំពឹងទុក។ សូមព្យាយាមម្តងទៀត។",
+    "networkError": "កំហុសបណ្តាញ។ សូមពិនិត្យការតភ្ជាប់របស់អ្នក។",
+    "unauthorized": "មិនមានការអនុញ្ញាត។ សូមចូលប្រើម្តងទៀត។"
+>>>>>>> Stashed changes:apps/web/messages/km.json
   }
 }

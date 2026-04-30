@@ -112,6 +112,14 @@
     "goToDashboard": "Go to Dashboard",
     "pleaseLoginFirst": "Please login first."
   },
+  "buttons": {
+    "start": "Start",
+    "submit": "Submit",
+    "previous": "Previous",
+    "next": "Next",
+    "back": "Back",
+    "continue": "Continue"
+  },
   "lesson": {
     "title": "Lesson",
     "exercise": "Exercise",
@@ -136,7 +144,16 @@
     "passed": "You passed!",
     "failed": "You didn't pass this time",
     "retryQuiz": "Retry Quiz",
-    "continueToNext": "Continue"
+    "continueToNext": "Continue",
+    "videoWordQuizzes": "Video Word Quizzes",
+    "noQuizzesAvailable": "No quizzes available",
+    "questions": "questions",
+    "yourAnswer": "Your Answer",
+    "scoreLabel": "Score",
+    "earned": "earned",
+    "correct": "correct",
+    "badgesEarned": "Badges Earned",
+    "needsImprovement": "Needs Improvement"
   },
   "practice": {
     "title": "AI Practice",
@@ -168,5 +185,10 @@
     "noVideosToReview": "No videos to review",
     "approvedSuccessfully": "Approved successfully",
     "rejectedSuccessfully": "Rejected successfully"
+  },
+  "errors": {
+    "unknown": "An unexpected error occurred. Please try again.",
+    "networkError": "Network error. Please check your connection.",
+    "unauthorized": "Unauthorized. Please log in again."
   }
 }
