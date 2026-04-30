@@ -1,52 +1,33 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation';
+// Import from your routing file, not 'next/navigation'
+import { useRouter, usePathname } from '@/i18n/routing'; 
+import React from 'react';
 
 export default function LanguageSwitcher(): JSX.Element {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const [isPending, startTransition] = React.useTransition();
 
-  const switchLocale = (newLocale: string): void => {
-    // Replace current locale in pathname
-    // /dashboard -> /km/dashboard or /km/dashboard -> /dashboard
-    let newPathname = pathname;
-
-    // Remove current locale prefix if it exists
-    if (pathname.startsWith(`/${locale}/`)) {
-      newPathname = pathname.slice(`/${locale}`.length);
-    }
-
-    // Add new locale prefix if not the default (en)
-    if (newLocale !== 'en') {
-      newPathname = `/${newLocale}${newPathname}`;
-    }
-
-    router.push(newPathname);
+  const onSelectChange = (nextLocale: string) => {
+    startTransition(() => {
+      // The 'router.push' from next-intl knows how to 
+      // swap the locale prefix automatically.
+      router.push(pathname, { locale: nextLocale });
+    });
   };
 
-  const otherLocale = locale === 'en' ? 'km' : 'en';
-  const buttonLabel = otherLocale === 'km' ? 'ខ្មែរ' : 'English';
-  const buttonTitle = otherLocale === 'km' ? 'Switch to Khmer' : 'Switch to English';
+  const otherLocale = locale === 'en' ? 'kh' : 'en';
 
   return (
     <button
-      onClick={() => switchLocale(otherLocale)}
-      type="button"
-      style={{
-        border: '1px solid #d1d5db',
-        background: '#fff',
-        borderRadius: 8,
-        padding: '0.4rem 0.75rem',
-        cursor: 'pointer',
-        fontSize: '0.875rem',
-        fontWeight: 500,
-        color: '#475569',
-      }}
-      title={buttonTitle}
+      disabled={isPending}
+      onClick={() => onSelectChange(otherLocale)}
+      style={{ opacity: isPending ? 0.5 : 1 }}
     >
-      {buttonLabel}
+      {otherLocale === 'kh' ? 'English' : 'ខ្មែរ'}
     </button>
   );
 }

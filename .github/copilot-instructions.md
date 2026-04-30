@@ -493,7 +493,7 @@ PATCH /admin/videos/{video_id}/reject
 6. **Streak is calculated server-side** using `user.timezone` stored at signup — never trust client-computed streak values.
 7. **Admin routes require `role = "ADMIN"`** enforced by a `require_admin` FastAPI dependency before any handler logic runs.
 8. **All media URLs use environment variables.** Never hardcode R2 or CDN URLs — always use `settings.MEDIA_BASE_URL`.
-9. **Khmer-first UI.** Default language is Khmer (`km`). English is secondary. Use `next-intl` (web) and `i18n-js` (mobile) with shared translation keys from `packages/shared`.
+9. **Khmer-first UI.** Default language is Khmer (`kh`). English is secondary. Use `next-intl` (web) and `i18n-js` (mobile) with shared translation keys from `packages/shared`.
 10. **All APIs must be mobile-compatible.** Pagination on all list endpoints (`?page=1&limit=20`), JWT Bearer auth (no session cookies for mobile), lean response payloads.
 11. **Finger Spelling dataset is image-based.** For model training and dataset pipeline decisions, treat Finger Spelling source data as labeled images; do not assume video-based datasets for this track unless explicitly introduced later.
 
@@ -586,7 +586,7 @@ apps/mobile/                          ← React Native + Expo (spec TBD)
 - [x] Create MUI theme with Cambodian colors (deep red, gold, blue)
 - [x] Add Google Fonts: Noto Sans Khmer + Inter
 - [x] Setup next-intl for i18n (Khmer as default locale, English as secondary)
-- [x] Create translation files for en.json and km.json
+- [x] Create translation files for en.json and kh.json
 - [x] Configure middleware for locale routing
 - [x] Add design tokens CSS variables
 
@@ -639,9 +639,9 @@ apps/mobile/                          ← React Native + Expo (spec TBD)
 
 **Setup & Requirements:**
 - **Library:** `next-intl` (Next.js 14+ native support)
-- **Default Locale:** Khmer (`km`)
+- **Default Locale:** Khmer (`kh`)
 - **Secondary Locale:** English (`en`)
-- **Routing:** Locale-prefixed URLs (`/km/dashboard`, `/en/dashboard`)
+- **Routing:** Locale-prefixed URLs (`/kh/dashboard`, `/en/dashboard`)
 - **Default Strategy:** Khmer-first (`localePrefix: 'as-needed'`)
 
 **File Structure:**
@@ -651,13 +651,13 @@ apps/web/
 ├── middleware.ts                ← Locale routing middleware
 ├── messages/
 │   ├── en.json                  ← English translations
-│   └── km.json                  ← Khmer translations
+│   └── kh.json                  ← Khmer translations
 ```
 
 **All User-Facing Text Must:**
 1. Use translation keys via `useTranslations()` hook
 2. Never hardcode English or Khmer strings in JSX
-3. Add new keys to both `en.json` and `km.json` simultaneously
+3. Add new keys to both `en.json` and `kh.json` simultaneously
 4. Use Khmer labels for Khmer UI elements (e.g., form labels, headings)
 5. Keep Latin/numeric labels in English (e.g., course titles, special terms)
 6. Use proper Khmer typography with Noto Sans Khmer font

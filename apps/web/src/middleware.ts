@@ -1,13 +1,10 @@
+// src/middleware.ts
 import createMiddleware from 'next-intl/middleware';
+import { routing } from './i18n/routing';
 
-export default createMiddleware({
-    // Define supported locales
-    locales: ['en', 'km', 'fr'],
-    // Default locale
-    defaultLocale: 'en'
-});
+export default createMiddleware(routing);
 
-// Apply middleware to every request (exclude API routes, static files)
 export const config = {
-    matcher: ['/((?!api|_next/).*)'],
+  // Match all paths except static files, API routes, etc.
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
 };

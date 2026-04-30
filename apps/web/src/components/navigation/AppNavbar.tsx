@@ -1,34 +1,33 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+// IMPORT FROM YOUR ROUTING FILE
+import { Link, usePathname, useRouter } from "@/i18n/routing"; 
 import { useEffect, useState } from "react";
-
 import { clearTokens, hasAccessToken } from "@/lib/api/client";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-const NAV_LINKS: Array<{ href: string; label: string }> = [
-  { href: "/", label: "Home" },
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/dictionary", label: "Dictionary" },
-];
-
 export default function AppNavbar(): JSX.Element {
+  const t = useTranslations("navbar"); // Assuming you add a "Navbar" section to your JSON
   const pathname = usePathname();
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isClient, setIsClient] = useState(false);
+
+  // Define links inside the component to use translations
+  const NAV_LINKS = [
+    { href: "/", label: t("home") },
+    { href: "/dashboard", label: t("dashboard") },
+    { href: "/dictionary", label: t("dictionary") },
+  ];
 
   useEffect(() => {
-    // Only run on client-side after hydration to prevent mismatch
-    setIsClient(true);
     setIsAuthenticated(hasAccessToken());
   }, [pathname]);
 
   function handleLogout(): void {
     clearTokens();
     setIsAuthenticated(false);
-    router.push("/login");
+    router.push("/login"); // next-intl router adds the locale automatically
   }
 
   return (
@@ -44,7 +43,6 @@ export default function AppNavbar(): JSX.Element {
           gap: "1rem",
           flexWrap: "wrap",
         }}
-        aria-label="Main navigation"
       >
         <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
           <Link href="/" style={{ fontWeight: 700, textDecoration: "none", color: "#111827" }}>
@@ -62,7 +60,6 @@ export default function AppNavbar(): JSX.Element {
                     color: isActive ? "#0f172a" : "#475569",
                     fontWeight: isActive ? 600 : 500,
                   }}
-                  aria-current={isActive ? "page" : undefined}
                 >
                   {link.label}
                 </Link>
@@ -72,7 +69,9 @@ export default function AppNavbar(): JSX.Element {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+          {/* NOW YOU CAN UNCOMMENT THIS */}
           <LanguageSwitcher />
+
           {isAuthenticated ? (
             <button
               type="button"
@@ -85,34 +84,15 @@ export default function AppNavbar(): JSX.Element {
                 cursor: "pointer",
               }}
             >
-              Logout
+              {t("logout")}
             </button>
           ) : (
             <>
-              <Link
-                href="/login"
-                style={{
-                  border: "1px solid #d1d5db",
-                  textDecoration: "none",
-                  color: "#111827",
-                  borderRadius: 8,
-                  padding: "0.4rem 0.75rem",
-                }}
-              >
-                Sign in
+              <Link href="/login" style={linkButtonStyle}>
+                {t("signIn")}
               </Link>
-              <Link
-                href="/register"
-                style={{
-                  border: "1px solid #0f172a",
-                  background: "#0f172a",
-                  textDecoration: "none",
-                  color: "#fff",
-                  borderRadius: 8,
-                  padding: "0.4rem 0.75rem",
-                }}
-              >
-                Sign up
+              <Link href="/register" style={primaryButtonStyle}>
+                {t("signUp")}
               </Link>
             </>
           )}
@@ -121,3 +101,21 @@ export default function AppNavbar(): JSX.Element {
     </header>
   );
 }
+
+// Simple style objects for readability
+const linkButtonStyle = {
+  border: "1px solid #d1d5db",
+  textDecoration: "none",
+  color: "#111827",
+  borderRadius: 8,
+  padding: "0.4rem 0.75rem",
+};
+
+const primaryButtonStyle = {
+  border: "1px solid #0f172a",
+  background: "#0f172a",
+  textDecoration: "none",
+  color: "#fff",
+  borderRadius: 8,
+  padding: "0.4rem 0.75rem",
+};
